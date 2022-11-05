@@ -12,8 +12,7 @@ module com.quizplus.tasktwo {
 
     opens com.quizplus.tasktwo to javafx.fxml, org.hibernate.orm.core;
     exports com.quizplus.tasktwo;
-    exports com.quizplus.tasktwo.Controller;
-    opens com.quizplus.tasktwo.Controller to javafx.fxml, org.hibernate.orm.core;
-
+    opens com.quizplus.tasktwo.Models to javafx.fxml, org.hibernate.orm.core;
+    exports com.quizplus.tasktwo.Models;
 
 }
