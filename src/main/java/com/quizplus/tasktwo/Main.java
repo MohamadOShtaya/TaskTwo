@@ -2,6 +2,8 @@ package com.quizplus.tasktwo;
 
 import com.quizplus.tasktwo.Models.Course;
 import com.quizplus.tasktwo.Models.Student;
+import com.quizplus.tasktwo.Rerpositry.CourseRepo;
+import com.quizplus.tasktwo.Service.courseService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -27,6 +29,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        CourseRepo cr = new CourseRepo(entityManager);
+        courseService cs = new courseService(cr);
+        ;
+        System.out.println(cs.findall().toString());
+
 //        List<Student> studentList = new ArrayList<>();
 //        Student ss = new Student();
 //        ss.setStudentAvg(75.5);

@@ -19,7 +19,7 @@ public class StudentRepo {
 
     public List<Student> finaAll() {
         Session session = (Session) entityManager.unwrap(Student.class);
-        Query<Student> query = session.createQuery("select * from student",Student.class);
+        Query<Student> query = session.createQuery("from student",Student.class);
         List<Student> students = query.getResultList();
         return students;
     }

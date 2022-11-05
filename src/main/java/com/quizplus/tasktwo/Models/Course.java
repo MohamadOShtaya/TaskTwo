@@ -3,8 +3,11 @@ package com.quizplus.tasktwo.Models;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import lombok.*;
 
 
+@Getter
+@Setter
 @Entity(name = "course")
 @Table(name = "course")
 public class Course {
@@ -18,7 +21,7 @@ public class Course {
     private String teacherName;
     @Column(name = "courseCapacity")
     private int courseCapacity;
-    @Column(name = "date")
+    @Column(name = "date_")
     private Date date;
     @Column(name = "isAvilable")
     private boolean isAvilable;
@@ -60,59 +63,5 @@ public class Course {
                 '}';
     }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public void setTeacherName(String teacherName) {
-        this.teacherName = teacherName;
-    }
-
-    public void setCourseCapacity(int courseCapacity) {
-        this.courseCapacity = courseCapacity;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public void setAvilable(boolean avilable) {
-        isAvilable = avilable;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public String getTeacherName() {
-        return teacherName;
-    }
-
-    public int getCourseCapacity() {
-        return courseCapacity;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public boolean isAvilable() {
-        return isAvilable;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
 }

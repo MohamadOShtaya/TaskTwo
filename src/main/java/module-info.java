@@ -7,7 +7,7 @@ module com.quizplus.tasktwo {
     requires java.compiler;
     requires java.sql;
     requires org.mapstruct;
-
+    requires lombok;
 
 
     opens com.quizplus.tasktwo to javafx.fxml, org.hibernate.orm.core;

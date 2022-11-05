@@ -14,7 +14,7 @@ public class CourseRepo {
 
     public List<Course> finaAll() {
         Session currSession = entityManager.unwrap(Session.class);
-        Query<Course> query = currSession.createQuery("select * from course",Course.class);
+        Query<Course> query = currSession.createQuery("from course",Course.class);
         List<Course> course = query.getResultList();
 
         return course;
