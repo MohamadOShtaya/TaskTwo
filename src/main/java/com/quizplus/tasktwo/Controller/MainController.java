@@ -1,4 +1,4 @@
-package com.quizplus.tasktwo;
+package com.quizplus.tasktwo.Controller;
 
 
 import javafx.fxml.FXML;
