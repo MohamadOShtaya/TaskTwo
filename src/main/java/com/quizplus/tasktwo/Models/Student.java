@@ -1,17 +1,16 @@
-package Models;
+package com.quizplus.tasktwo.Models;
 
 
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+
+
 @Entity(name = "student")
 @Table(name = "student")
+
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,5 +57,53 @@ public class Student {
                 ", studentDepartmentName='" + studentDepartmentName + '\'' +
                 ", courses=" + courses +
                 '}';
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public void setStudentGender(String studentGender) {
+        this.studentGender = studentGender;
+    }
+
+    public void setStudentAvg(double studentAvg) {
+        this.studentAvg = studentAvg;
+    }
+
+    public void setStudentDepartmentName(String studentDepartmentName) {
+        this.studentDepartmentName = studentDepartmentName;
+    }
+
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public String getStudentGender() {
+        return studentGender;
+    }
+
+    public double getStudentAvg() {
+        return studentAvg;
+    }
+
+    public String getStudentDepartmentName() {
+        return studentDepartmentName;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 }

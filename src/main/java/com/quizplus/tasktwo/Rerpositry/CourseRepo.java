@@ -1,15 +1,14 @@
-package Rerpositry;
+package com.quizplus.tasktwo.Rerpositry;
 
-import Models.Course;
+import com.quizplus.tasktwo.Models.Course;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
-public class courseRepo {
+public class CourseRepo {
     private EntityManager entityManager;
-    public courseRepo(EntityManager theEntityManager){
+    public CourseRepo(EntityManager theEntityManager){
         entityManager=theEntityManager;
     }
 
