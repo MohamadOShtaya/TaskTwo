@@ -25,11 +25,11 @@ public class studentService {
         studentRepo.save(theStudent);
 
     }
-
-    public void deleateById(int theId) {
-        // TODO Auto-generated method stub
-        studentRepo.deleateById(theId);
+    public void deleateById(int id){
+        studentRepo.deleteById(id);
     }
+
+
 
 
 

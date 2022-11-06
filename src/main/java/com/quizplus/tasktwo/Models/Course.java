@@ -50,6 +50,14 @@ public class Course {
         this.students = students;
     }
 
+    public Course(String courseName, String teacherName, int courseCapacity, Date date, boolean isAvilable) {
+        this.courseName = courseName;
+        this.teacherName = teacherName;
+        this.courseCapacity = courseCapacity;
+        this.date = date;
+        this.isAvilable = isAvilable;
+    }
+
     @Override
     public String toString() {
         return "Course{" +

@@ -26,7 +26,8 @@ public class courseService {
     }
     public void deleateById(int theId) {
         // TODO Auto-generated method stub
-        courseRepo.deleateById(theId);
+        courseRepo.deleteById(theId);
     }
+
 
 }

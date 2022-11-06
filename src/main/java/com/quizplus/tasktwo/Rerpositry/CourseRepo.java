@@ -2,45 +2,57 @@ package com.quizplus.tasktwo.Rerpositry;
 
 import com.quizplus.tasktwo.Models.Course;
 import org.hibernate.Session;
-import org.hibernate.query.Query;
+
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
+
 public class CourseRepo {
-    private EntityManager entityManager;
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
     public CourseRepo(EntityManager theEntityManager){
         entityManager=theEntityManager;
     }
 
     public List<Course> finaAll() {
-        Session currSession = entityManager.unwrap(Session.class);
-        Query<Course> query = currSession.createQuery("from course",Course.class);
-        List<Course> course = query.getResultList();
-
-        return course;
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("select c from course ").getResultList();
+        entityManager.getTransaction().commit();
+        return entityManager.createQuery("select c from course ").getResultList();
     }
-
+    public void save(Course theCourse) {
+         entityManager.getTransaction().begin();
+         entityManager.persist(theCourse);
+         entityManager.getTransaction().commit();
+    }
 
     public Course findById(int theId) {
-        Session currSession = (Session) entityManager.unwrap(Course.class);
-        Course course = currSession.get(Course.class,theId);
-
+        Course course = entityManager.find(Course.class,theId);
         return course;
+
+    }
+    public void deleteById(int courseId){
+        entityManager.getTransaction().begin();
+        try {
+            Course course = entityManager.find(Course.class,courseId);
+            entityManager.remove(course);
+            entityManager.getTransaction().commit();
+            System.out.println("Deleated");
+        }
+        catch (Exception ex){
+            System.out.println("Course has already been delated ");
+        }
+
+    }
+    public void update(Course course){
+        entityManager.getTransaction().begin();
+        Session curs = entityManager.unwrap(Session.class);
+        curs.saveOrUpdate(course);
     }
 
 
-    public void save(Course theCourse) {
-       Session currSession = (Session) entityManager.unwrap(Course.class);
-       currSession.saveOrUpdate(theCourse);
-    }
 
 
-    public void deleateById(int theId) {
-        Session currSesion = (Session) entityManager.unwrap(Course.class);
-        Query query = currSesion.createQuery(
-                "delete from course where id=:courseId");
-        query.setParameter("courseID",theId);
-
-
-    }
 }

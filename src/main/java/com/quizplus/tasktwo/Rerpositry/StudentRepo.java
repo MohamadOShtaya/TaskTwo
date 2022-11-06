@@ -3,47 +3,48 @@ package com.quizplus.tasktwo.Rerpositry;
 
 
 import com.quizplus.tasktwo.Models.Student;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 
 public class StudentRepo {
-
-    private EntityManager entityManager;
-    public StudentRepo(EntityManager entityManager){
-        this.entityManager=entityManager;
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
+    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    public StudentRepo(EntityManager theEntityManager){
+        entityManager=theEntityManager;
     }
-
 
     public List<Student> finaAll() {
-        Session session = (Session) entityManager.unwrap(Student.class);
-        Query<Student> query = session.createQuery("from student",Student.class);
-        List<Student> students = query.getResultList();
-        return students;
+        entityManager.getTransaction().begin();
+        entityManager.createQuery("select s from student ").getResultList();
+        entityManager.getTransaction().commit();
+        return entityManager.createQuery("select s from student  ").getResultList();
     }
-
+    public void save(Student theStudent) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(theStudent);
+        entityManager.getTransaction().commit();
+    }
 
     public Student findById(int theId) {
-        Session session = entityManager.unwrap(Session.class);
-        Student student = session.get(Student.class, theId);
+        Student student = entityManager.find(Student.class,theId);
         return student;
+
+    }
+    public void deleteById(int courseId){
+        entityManager.getTransaction().begin();
+        try {
+            Student student = entityManager.find(Student.class,courseId);
+            entityManager.remove(student);
+            entityManager.getTransaction().commit();
+            System.out.println("Deleated");
+        }
+        catch (Exception ex){
+            System.out.println("student has already been Deleated ");
+        }
+
     }
 
-
-    public void save(Student theStudent) {
-        Session session = entityManager.unwrap(Session.class);
-
-        session.saveOrUpdate(theStudent);
-    }
-
-
-    public void deleateById(int theId) {
-        Session session = entityManager.unwrap(Session.class);
-        Query query = session.createQuery(
-                "delete from student where id=:studentId");
-        query.setParameter("studentId", theId);
-        query.executeUpdate();
-    }
 }
