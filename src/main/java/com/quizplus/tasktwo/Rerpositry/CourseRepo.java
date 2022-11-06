@@ -23,7 +23,7 @@ public class CourseRepo {
         return entityManager.createQuery("select c from course ").getResultList();
     }
     public void save(Course theCourse) {
-         entityManager.getTransaction().begin();
+//         entityManager.getTransaction().begin();
          entityManager.persist(theCourse);
          entityManager.getTransaction().commit();
     }
@@ -48,8 +48,8 @@ public class CourseRepo {
     }
     public void update(Course course){
         entityManager.getTransaction().begin();
-        Session curs = entityManager.unwrap(Session.class);
-        curs.saveOrUpdate(course);
+        Session currentSession = entityManager.unwrap(Session.class);
+        currentSession.saveOrUpdate(course);
     }
 
 

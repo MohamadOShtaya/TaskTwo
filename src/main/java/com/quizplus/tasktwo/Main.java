@@ -34,7 +34,10 @@ public class Main extends Application {
        // cr.deleteById(4);
        // cs.findById(2);
         cs.deleateById(2);
-
+        Course course3 = new Course("up","adc",10,null,true);
+        cr.save(course3);
+        course3.setCourseName("after");
+        cr.update(course3);
         System.out.println( cr.findById(1).toString());
 
        // System.out.println(cs.findall().toString());

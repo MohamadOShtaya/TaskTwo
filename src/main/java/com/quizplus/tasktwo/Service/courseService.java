@@ -19,15 +19,14 @@ public class courseService {
     public Course findById(int theId) {
         return courseRepo.findById(theId);
     }
-    public void save(Course theCourse) {
-        // TODO Auto-generated method stub
-        courseRepo.save(theCourse);
-
+    public void save(Course course){
+        courseRepo.save(course);
     }
     public void deleateById(int theId) {
         // TODO Auto-generated method stub
         courseRepo.deleteById(theId);
     }
+
 
 
 }
