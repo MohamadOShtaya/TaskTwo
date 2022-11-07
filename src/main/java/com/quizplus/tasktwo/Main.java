@@ -12,14 +12,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
+import java.util.List;
 
 public class Main extends Application {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
     private static EntityManager entityManager = entityManagerFactory.createEntityManager();
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Main.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 700, 800);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -30,15 +31,20 @@ public class Main extends Application {
         courseService cs = new courseService(cr);
         Course course = new Course("C","Abdallah",10,null,true);
         Course course2 = new Course("loa","adc",10,null,true);
-        //cr.save(course);
-       // cr.deleteById(4);
-       // cs.findById(2);
-        cs.deleateById(2);
-        Course course3 = new Course("up","adc",10,null,true);
-        cr.save(course3);
-        course3.setCourseName("after");
-        cr.update(course3);
-        System.out.println( cr.findById(1).toString());
+////        cr.save(course);
+//      //  cs.findall();
+//        System.out.println(cs.findall().toString());
+        List<Course> test = cs.findall();
+        System.out.println(test.toString());
+
+//       // cr.deleteById(4);
+//        cs.findById(2);
+//        cs.deleateById(2);
+//        Course course3 = new Course("up","adc",10,null,true);
+//        cr.save(course2);
+//        course3.setCourseName("after");
+//       // cr.update(course3);
+//        System.out.println( cr.findById(1).toString());
 
        // System.out.println(cs.findall().toString());
 //        cs.deleateById(2);

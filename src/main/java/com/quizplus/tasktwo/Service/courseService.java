@@ -14,7 +14,9 @@ public class courseService {
 
     public List<Course> findall() {
         // TODO Auto-generated method stub
+
         return courseRepo.finaAll();
+
     }
     public Course findById(int theId) {
         return courseRepo.findById(theId);
