@@ -26,7 +26,7 @@ public class CourseRepo {
         return entityManager.createQuery("from course ").getResultList();
     }
     public void save(Course theCourse) {
-//         entityManager.getTransaction().begin();
+         entityManager.getTransaction().begin();
          entityManager.persist(theCourse);
          entityManager.getTransaction().commit();
     }
